@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {MyCard} from "./components/MyCard";
+import "./App.css"
+import {MySnackbar} from "./components/MySnackbar";
+import {mainReducer} from "./store/mainReducer";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+
+const store = createStore(mainReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Provider store={store}>
+            <div className="App">
+                <MyCard/>
+                <MySnackbar/>
+            </div>
+        </Provider>
+    );
 }
 
 export default App;
